@@ -1,23 +1,82 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,400i,700,700i&subset=latin-ext');
 
-/* nastaveni barev */
+/* predelano, aby to menilo barvy podle spravne/spatne odpovedi - tip z Youtube*/
 :root {
-	--cervena: #ff0844;
-	--oranzova: #ffb199;
-	--seda: #e0e0e0;
+	
+	--hue-neutral: 400;
+	--hue-wrong: 0;
+	--hue-correct: 145;
 }
 
 html { box-sizing: border-box; }
 *, ::before, :after { box-sizing: inherit; }
 
 body {
-	margin: 0;
+	--hue: var(--hue-neutral); 
+	margin: 0; 
+	padding:0;
+	justify-content: center;
+	align-items: center;
 	min-height: 100vh;
+	width: 100vw;
+	height: 100vh;
 	font-family: 'Nunito', sans-serif;
-	color: white;
-	background-image: linear-gradient(to top, var(--cervena) 0%, var(--oranzova) 100%);
+	background-color: hsl(var(--hue), 100%, 15%);
+	
 }
+
+body.correct {
+	--hue: var(--hue-correct);
+}
+
+body.wrong {
+	--hue: var(--hue-wrong);
+}
+	
+.btn-grid {
+	display: grid;
+	/*grid-template-columns: repeat(2, auto);    to kdybychom meli abcd tak to rozdeli do 2 sloupecku */
+	gap: 10px;
+	margin: 20px 0;
+}
+
+.btn {
+	--hue: var(--hue-neutral);
+	background-color: hsl(var(--hue), 100%, 80%);
+	border-radius: 5px;
+}
+
+.btn.correct{
+	--hue: var(--hue-correct);
+	color:black;
+}
+
+.btn.wrong{
+	--hue: var(--hue-wrong);
+}
+
+.start-btn, .next-btn {
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 10px 20px;
+}
+
+.controls {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.hide {
+	display:none;
+}
+ 
+
+
+
+
 
 h1, h2, h3 {
 	font-family: 'Bangers', cursive;
