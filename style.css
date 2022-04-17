@@ -45,6 +45,7 @@ body.wrong {
 	--hue: var(--hue-neutral);
 	background-color: hsl(var(--hue), 100%, 80%);
 	border-radius: 5px;
+	font-family: 'Bangers', cursive;
 }
 
 .btn.correct{
@@ -60,12 +61,14 @@ body.wrong {
 	font-size: 1.5rem;
 	font-weight: bold;
 	padding: 10px 20px;
+	font-family: 'Bangers', cursive;
 }
 
 .controls {
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	font-family: 'Bangers', cursive;
 }
 
 
@@ -104,7 +107,7 @@ h1 {
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#poradi {
+#question-container {
 	margin: 0 0 20px 0;
 	font-family: 'Bangers', cursive;
 	font-size: 24px;
@@ -112,12 +115,13 @@ h1 {
 	color: var(--cervena);
 }
 
-#otazka {
+.question {
 	margin: 20px 0 30px 0;
 	font-size: 36px;
 	line-height: 1.2;
 	text-align: center;
 	color: black;
+	font-family: 'Bangers', cursive;
 }
 
 .obsah {
