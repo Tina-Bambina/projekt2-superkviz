@@ -29,7 +29,7 @@ function nextQuestion()
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
-
+let aktualniOtazka = 2;
 function showQuestion(question) 
 {
     questionElement.innerText = question.question
@@ -43,7 +43,9 @@ function showQuestion(question)
             }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
+        
     });
+    picture.src = 'obrazky/' + questions[currentQuestionIndex].picture;
 }
 
 
@@ -93,6 +95,7 @@ function clearStatusClass(element)
 
 const questions = [
     {
+        picture:  'map.jpg',
         question: 'Jake je hlavni mesto Gronska',
         answers: [
             {text: 'Nuuk', correct: true },
@@ -101,14 +104,16 @@ const questions = [
         ]
     },
     {
-        question: 'Hruska nebo jablko nebo ananas?',
+        picture: 'snehurka.jpg',
+        question: 'Tak na cem si ted pochutname?',
         answers: [
-            {text: 'ananas', correct: true },
+            {text: 'ananas', correct: false },
             {text: 'hruska', correct: false },
-            {text: 'jablko', correct: false },
+            {text: 'jablko', correct: true },
         ]
     },
     {
+        picture: 'pivo.jpg',
         question: 'Jak se mi tento kurz zatim dari?',
         answers: [
             {text: 'na jednicku', correct: true },
