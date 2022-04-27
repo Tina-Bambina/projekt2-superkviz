@@ -1,5 +1,6 @@
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
+const question = document.querySelector('#question');
 const questionContainerElement = document.getElementById('question-container');
 let shuffledQuestions, currentQuestionIndex; 
 const questionElement = document.getElementById('question');
@@ -29,7 +30,7 @@ function nextQuestion()
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
-let aktualniOtazka = 2;
+
 function showQuestion(question) 
 {
     questionElement.innerText = question.question
@@ -46,6 +47,7 @@ function showQuestion(question)
         
     });
     picture.src = 'obrazky/' + questions[currentQuestionIndex].picture;
+
 }
 
 
@@ -58,7 +60,7 @@ function resetState ()
         (answerButtonsElement.firstChild)
     }
 }
-
+let myAnswers = []
 function selectAnswer(e)
 {
     const selectedButton = e.target
@@ -66,15 +68,52 @@ function selectAnswer(e)
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button=> {
         setStatusClass(button, button.dataset.correct)
+
+   // let answer = event.target.dataset.answer;
+
+    myAnswers.push(correct);   
     })
     if(shuffledQuestions.length > currentQuestionIndex+1){
     nextButton.classList.remove('hide')
     }
-        else{
-            startButton.innerText = 'Restart'   //toto zmen na vysledek
-            startButton.classList.remove('hide')
+    else if (shuffledQuestions.length === questions.length){
+	ShowResults();
     }
+   
+}
 
+
+function ShowResults() {
+	document.querySelector('.kviz').style.display = 'none';
+	document.querySelector('.results').style.display = 'block';
+	const finished = document.querySelector('#values');
+	// vypiseme pole - to je jen prechodne, takhle to delat nebudeme
+	console.log(myAnswers);
+
+	let correctAnswers = 0;
+
+	for (let i = 0; i < questions.length; i++) {
+		let lineQuestion = document.createElement('h3');
+		lineQuestion.textContent = (i + 1) + '. ' + questions[i].question;
+		finished.appendChild(lineQuestion);
+
+		let mine = document.createElement('p');
+		mine.textContent = 'Tvoje odpověď: ' + questions[i].answers[myAnswers[i]];
+		finished.appendChild(mine);
+
+		let correct = document.createElement('p');
+		if (parseInt(myAnswers[i]) === questions[i].correct) {
+			correctAnswers++;
+			correct.textContent = 'To je SPRÁVNĚ.';
+		} else {
+			correct.textContent = 'Správná odpověď: ' + questions[i].answers[questions[i].spravna];
+		}
+		finished.appendChild(correct);
+	}
+
+	let percent = document.createElement('h2');
+	percent.textContent += 'Správně ' + correctAnswers + ' ze ' + questions.length + ' otázek. Úspěšnost ' + Math.round(correctAnswers / questions.length * 100) + ' %.';
+	finished.appendChild(percent);
 }
 
 function setStatusClass(element, correct) {
@@ -95,7 +134,7 @@ function clearStatusClass(element)
 
 const questions = [
     {
-        picture:  'map.jpg',
+        picture:  'mapa.PNG',
         question: 'Jake je hlavni mesto Gronska',
         answers: [
             {text: 'Nuuk', correct: true },

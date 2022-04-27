@@ -21,7 +21,7 @@ body {
 	min-height: 100vh;
 	width: 100vw;
 	height: 100vh;
-	font-family: 'Bangers', cursive;
+ 	font-family: 'Bangers', cursive;
 	background-color: hsl(var(--hue), 100%, 15%);
 	
 }
@@ -94,7 +94,7 @@ h1 {
 }
 
 .kviz,
-.vysledek {
+.results {
 	margin: 30px auto;
 	padding: 50px;
 	width: 800px;
@@ -103,6 +103,7 @@ h1 {
 	color: black;
 	border-radius: 10px;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	font-family: 'Bangers', cursive;
 }
 
 #poradi {
@@ -167,7 +168,7 @@ h1 {
 }
 
 
-.vysledek {
+.results {
 	display: none;
 }
 
