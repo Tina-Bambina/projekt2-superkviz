@@ -4,12 +4,13 @@ const question = document.querySelector('#question');
 const questionContainerElement = document.getElementById('question-container');
 let shuffledQuestions, currentQuestionIndex; 
 const questionElement = document.getElementById('question');
-const answerButtonsElement = document.getElementById('answer-buttons')
+const answerButtonsElement = document.getElementById('answer-buttons');
+let myAnswers = [];
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
-    currentQuestionIndex++
-    nextQuestion()
+    currentQuestionIndex++;
+    nextQuestion();
 })
 
 function startGame()
@@ -23,33 +24,32 @@ function startGame()
 
 function nextQuestion()
 {
-    resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+    resetState();
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
 function showQuestion(question) 
 {
-    questionElement.innerText = question.question
+    questionElement.innerText = question.question;
     question.answers.forEach(answer => {
-        const button = document.createElement ('button')
-        button.innerText = answer.text
-        button.classList.add('btn')
+        const button = document.createElement ('button');
+        button.innerText = answer.text;
+        button.classList.add('btn');
         if (answer.correct)
             {
                 button.dataset.correct = answer.correct
             }
-        button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button)
+        button.addEventListener('click', selectAnswer);
+        answerButtonsElement.appendChild(button);
         
     });
     picture.src = 'obrazky/' + questions[currentQuestionIndex].picture;
 
 }
 
-
 function resetState ()
 {
-    nextButton.classList.add('hide')
+    nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild)
     {
         answerButtonsElement.removeChild
@@ -57,33 +57,30 @@ function resetState ()
     }
 }
 
-let myAnswers = []
-
 function selectAnswer(e)
 {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
+    const selectedButton = e.target;
+    const correct = selectedButton.dataset.correct;
+    setStatusClass(document.body, correct);
     Array.from(answerButtonsElement.children).forEach(button=> {
         setStatusClass(button, button.dataset.correct)
 
    // let answer = event.target.dataset.answer;
-    myAnswers.push(correct);   
+    // myAnswers.push(e.target.getAttribute('mystery'));   
     })
     if(shuffledQuestions.length > currentQuestionIndex+1){
-    nextButton.classList.remove('hide')
+    nextButton.classList.remove('hide');
     }
     else if (shuffledQuestions.length === questions.length){
 	ShowResults();
     }
-   
 }
+
 
 function ShowResults() {
 	document.querySelector('.kviz').style.display = 'none';
 	document.querySelector('.results').style.display = 'block';
 	const finished = document.querySelector('#values');
-	// vypiseme pole - to je jen prechodne, takhle to delat nebudeme
 	console.log(myAnswers);
 
 	let correctAnswers = 0;
