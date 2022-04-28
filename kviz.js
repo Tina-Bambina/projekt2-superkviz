@@ -6,24 +6,20 @@ let shuffledQuestions, currentQuestionIndex;
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons')
 
-
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     nextQuestion()
 })
 
-
 function startGame()
 {
-    console.log('Started');
     startButton.classList.add('hide');
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainerElement.classList.remove('hide');
     nextQuestion();
 }
-
 
 function nextQuestion()
 {
@@ -60,7 +56,9 @@ function resetState ()
         (answerButtonsElement.firstChild)
     }
 }
+
 let myAnswers = []
+
 function selectAnswer(e)
 {
     const selectedButton = e.target
@@ -70,7 +68,6 @@ function selectAnswer(e)
         setStatusClass(button, button.dataset.correct)
 
    // let answer = event.target.dataset.answer;
-
     myAnswers.push(correct);   
     })
     if(shuffledQuestions.length > currentQuestionIndex+1){
@@ -81,7 +78,6 @@ function selectAnswer(e)
     }
    
 }
-
 
 function ShowResults() {
 	document.querySelector('.kviz').style.display = 'none';
@@ -107,6 +103,7 @@ function ShowResults() {
 			correct.textContent = 'To je SPRÁVNĚ.';
 		} else {
 			correct.textContent = 'Správná odpověď: ' + questions[i].answers[questions[i].spravna];
+            
 		}
 		finished.appendChild(correct);
 	}
@@ -130,7 +127,6 @@ function clearStatusClass(element)
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
-
 
 const questions = [
     {
@@ -159,6 +155,15 @@ const questions = [
             {text: 'nikdy jsem ho nemela zacinat', correct: false },
             {text: '50-50', correct: false },
         ]
-    }
+    },
+    {
+        picture:  'mapa.PNG',
+        question: 'A hlavni mesto Slovenska?',
+        answers: [
+            {text: 'Bratislava', correct: true },
+            {text: 'Praha', correct: false },
+            {text: 'Brno', correct: false },
+        ]
+    },
 
 ]
